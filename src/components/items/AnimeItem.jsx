@@ -1,134 +1,114 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material/styles";
+import Button from "@mui/material/Button";
 
-import ItemImg from "../styled/ItemImg";
+import Stack from "@mui/material/Stack";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
 
-import PeopleIcon from "@mui/icons-material/People";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import AvTimerIcon from "@mui/icons-material/AvTimer";
+import StackedLineChartIcon from "@mui/icons-material/StackedLineChart";
+import PeopleIcon from "@mui/icons-material/People";
 
-function AnimeItem({ entry }) {
-  const { title, score, episodes, members, aired, images } = entry;
+function AnimeItem({ entry, handleOpen }) {
+  const { mal_id, title, score, images, popularity, type, members } = entry;
 
-  const langOptions = { year: "numeric", month: "short", day: "numeric" };
-  const airedFrom = new Date(aired.from).toLocaleDateString(
-    "en-US",
-    langOptions
-  );
-  const airedTo = new Date(aired.to).toLocaleDateString("en-US", langOptions);
+  const InfoStack = styled(Stack)(({ theme }) => ({
+    alignItems: "center",
 
-  const styleTextWrap = { display: "flex", alignItems: "center" };
-  const styleIcon = { width: "10%", marginRight: 0.5 };
-  const accentColor = "#403c97";
+    color: theme.palette.primary.dark,
+  }));
 
   return (
-    <Grid item xs={4}>
-      <Paper
-        elevation={5}
+    <Grid item xs={12} sm={6} md={4} lg={3}>
+      <Card
         sx={{
-          p: 1,
-          margin: "auto",
-          height: 240,
           display: "flex",
-          borderBottom: `6px solid ${accentColor}`,
-          borderBottomLeftRadius: "10px",
-          borderBottomRightRadius: "10px",
+          justifyContent: "space-between",
+          height: 230,
         }}
       >
-        <Grid container spacing={1}>
-          <Grid
-            container
-            item
-            xs="auto"
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
+          <CardContent
             sx={{
-              alignItems: "center",
-              justifyContent: "center",
+              height: "30%",
             }}
           >
-            <ItemImg alt="cover image" src={images.jpg.image_url} />
-          </Grid>
-          <Grid
-            item
-            xs={8}
-            sm
-            container
-            justifyContent="center"
-            alignItems="center"
+            <Typography
+              component="h2"
+              variant="subtitle2"
+              sx={{ lineHeight: 1.1 }}
+            >
+              {title}
+            </Typography>
+          </CardContent>
+          <Stack
+            direction={{
+              xs: "column",
+            }}
+            spacing={{ lg: 1 }}
+            sx={{ p: 1 }}
           >
-            <Grid item xs container direction="column" spacing={1}>
-              <Grid item xs>
-                <Typography
-                  variant="body1"
-                  component="h2"
-                  sx={{
-                    textAlign: "center",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    height: 60,
-                    fontWeight: "bold",
-                  }}
-                >
-                  {title}
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Box sx={styleTextWrap}>
-                  <StarOutlineIcon sx={styleIcon} />
-                  <Typography
-                    variant="subtitle2"
-                    component="p"
-                    color={accentColor}
-                  >
-                    Score: {score}
-                  </Typography>
-                </Box>
-              </Grid>
-              <Grid item>
-                <Box sx={styleTextWrap}>
-                  <ArrowRightIcon sx={styleIcon} />
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    component="p"
-                  >
-                    Episodes: {episodes}
-                  </Typography>
-                </Box>
-              </Grid>
-              <Grid item>
-                <Box sx={styleTextWrap}>
-                  <AvTimerIcon sx={styleIcon} />
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    component="p"
-                  >
-                    Aired: {airedFrom} - {airedTo}
-                  </Typography>
-                </Box>
-              </Grid>
-              <Grid item>
-                <Box sx={styleTextWrap}>
-                  <PeopleIcon sx={styleIcon} />
-                  <Typography
-                    variant="subtitle2"
-                    color="text.secondary"
-                    component="p"
-                  >
-                    MAL Members: {members}
-                  </Typography>
-                </Box>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Paper>
+            <InfoStack
+              direction={{ xs: "row" }}
+              spacing={{ xs: 1.25, lg: 1.5 }}
+            >
+              <StarOutlineIcon sx={{ fontSize: 16 }} />
+              <Typography variant="subtitle2" component="p">
+                Score: {score}
+              </Typography>
+            </InfoStack>
+
+            <InfoStack
+              direction={{ xs: "row" }}
+              spacing={{ xs: 1.25, lg: 1.5 }}
+            >
+              <StackedLineChartIcon sx={{ fontSize: 16 }} />
+              <Typography variant="subtitle2" component="p">
+                Popularity: #{popularity}
+              </Typography>
+            </InfoStack>
+
+            <InfoStack
+              direction={{ xs: "row", lg: "column" }}
+              display={{ lg: "none" }}
+              spacing={{ xs: 1.25, lg: 1.5 }}
+            >
+              <PeopleIcon sx={{ fontSize: 16 }} />
+              <Typography variant="subtitle2" component="p">
+                MAL Members: {members}
+              </Typography>
+            </InfoStack>
+          </Stack>
+          <CardActions sx={{ pt: 0 }}>
+            <Button
+              size="small"
+              variant="outlined"
+              onClick={() => handleOpen(mal_id)}
+            >
+              View More
+            </Button>
+          </CardActions>
+        </Box>
+        <CardMedia
+          component="img"
+          sx={{ width: 130 }}
+          image={images.jpg.image_url}
+          alt="cover"
+        />
+      </Card>
     </Grid>
   );
 }

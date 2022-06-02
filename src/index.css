@@ -9,6 +9,7 @@
 
 :root {
   --backgroundColor-main: #f0f0f0;
+  --backgroundColor-dark: #f0f0f0;
   --accent-color: #403c97;
   --highlight-color: #e7dedc;
 }
@@ -68,8 +69,33 @@ html {
 
 .spinner {
   position: relative;
+  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 25rem;
+}
+
+.cover-link-container {
+  width: inherit;
+  height: inherit;
+}
+
+.cover-img {
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  box-shadow: 0.5em 0.5em 0.5em rgba(0, 0, 0, 0.25);
+}
+
+.title-button {
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  position: relative;
+  left: 11;
+  bottom: 20;
+}
+.title-button:hover {
+  color: #403c97;
+  cursor: pointer;
 }
