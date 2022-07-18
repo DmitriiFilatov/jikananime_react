@@ -2,14 +2,12 @@ import React, { useState } from "react";
 
 import AnimeItem from "../items/AnimeItem";
 import MangaItem from "../items/MangaItem";
+import MangaItemExpanded from "../items/MangaItemExpanded";
+import AnimeItemExpanded from "../items/AnimeItemExpanded";
+
 import Grid from "@mui/material/Grid";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
-import Typography from "@mui/material/Typography";
-
-import MangaItemExpanded from "../items/MangaItemExpanded";
-import AnimeItemExpanded from "../items/AnimeItemExpanded";
 
 function Results({ entries, category }) {
   const topItems = entries;
@@ -28,48 +26,32 @@ function Results({ entries, category }) {
   };
 
   return (
-    <Grid container spacing={{ xs: 4, sm: 2, lg: 4 }}>
-      {topItems &&
-        topItems.map((entry) => (
-          <>
-            {category === "anime" && (
-              <AnimeItem
-                entry={entry}
-                key={entry.mal_id}
-                id={entry.mal_id}
-                handleOpen={handleOpen}
-              />
-            )}
+    <>
+      <Grid container spacing={{ xs: 4, sm: 2, lg: 4 }} sx={{ mb: 3 }}>
+        {topItems &&
+          topItems.map((entry) => (
+            <React.Fragment key={entry.mal_id.toString()}>
+              {category === "anime" && (
+                <AnimeItem entry={entry} handleOpen={handleOpen} />
+              )}
 
-            {category === "manga" && (
-              <MangaItem
-                entry={entry}
-                key={entry.mal_id}
-                id={entry.mal_id}
-                handleOpen={handleOpen}
-              />
-            )}
-          </>
-        ))}
-      {chosenItem.length !== 0 && (
-        <Dialog open={open} maxWidth="lg" onClose={handleClose}>
-          {/* <DialogTitle>
-            <Typography variant="h4" component="h2" fontWeight="bolder">
-              {chosenItem.title}
-            </Typography>
-          </DialogTitle> */}
-          <DialogContent>
-            {category === "anime" && (
-              <AnimeItemExpanded entry={chosenItem} key={chosenItem.title} />
-            )}
+              {category === "manga" && (
+                <MangaItem entry={entry} handleOpen={handleOpen} />
+              )}
+            </React.Fragment>
+          ))}
 
-            {category === "manga" && (
-              <MangaItemExpanded entry={chosenItem} key={chosenItem.title} />
-            )}
-          </DialogContent>
-        </Dialog>
-      )}
-    </Grid>
+        {chosenItem.length !== 0 && (
+          <Dialog open={open} maxWidth="lg" onClose={handleClose}>
+            <DialogContent>
+              {category === "anime" && <AnimeItemExpanded entry={chosenItem} />}
+
+              {category === "manga" && <MangaItemExpanded entry={chosenItem} />}
+            </DialogContent>
+          </Dialog>
+        )}
+      </Grid>
+    </>
   );
 }
 

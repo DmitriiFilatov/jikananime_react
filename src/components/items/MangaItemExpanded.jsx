@@ -11,7 +11,7 @@ import Paper from "@mui/material/Paper";
 import AirplayIcon from "@mui/icons-material/Airplay";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import StackedLineChartIcon from "@mui/icons-material/StackedLineChart";
-import NotInterestedIcon from "@mui/icons-material/NotInterested";
+import Divider from "@mui/material/Divider";
 import CategoryIcon from "@mui/icons-material/Category";
 import MovieFilterIcon from "@mui/icons-material/MovieFilter";
 import AvTimerIcon from "@mui/icons-material/AvTimer";
@@ -53,7 +53,7 @@ function MangaItemExpanded({ entry }) {
       >
         <Grid container spacing={2}>
           <Grid container item xs={12} md={4}>
-            <Grid container item xs="true" sm={6} md={12}>
+            <Grid item sm={6} md={12}>
               <Img alt="complex" src={entry.images.jpg.large_image_url} />
             </Grid>
 
@@ -65,6 +65,7 @@ function MangaItemExpanded({ entry }) {
                     Type: {entry.type}
                   </Typography>
                 </Box>
+                <Divider />
               </Grid>
 
               <Grid item>
@@ -74,6 +75,7 @@ function MangaItemExpanded({ entry }) {
                     Score: {entry.score}
                   </Typography>
                 </Box>
+                <Divider />
               </Grid>
 
               <Grid item>
@@ -83,6 +85,7 @@ function MangaItemExpanded({ entry }) {
                     Popularity: #{entry.popularity}
                   </Typography>
                 </Box>
+                <Divider />
               </Grid>
 
               <Grid item>
@@ -92,6 +95,7 @@ function MangaItemExpanded({ entry }) {
                     Chapters: {entry.chapters}
                   </Typography>
                 </Box>
+                <Divider />
               </Grid>
 
               <Grid item>
@@ -101,6 +105,7 @@ function MangaItemExpanded({ entry }) {
                     Published: {publishedFrom} - {publishedTo}
                   </Typography>
                 </Box>
+                <Divider />
               </Grid>
 
               <Grid item>
@@ -117,6 +122,7 @@ function MangaItemExpanded({ entry }) {
                     ))}
                   </Typography>
                 </Box>
+                <Divider />
               </Grid>
 
               <Grid item>
@@ -133,6 +139,7 @@ function MangaItemExpanded({ entry }) {
                     ))}
                   </Typography>
                 </Box>
+                <Divider />
               </Grid>
 
               <Grid item>
@@ -149,6 +156,7 @@ function MangaItemExpanded({ entry }) {
                     ))}
                   </Typography>
                 </Box>
+                <Divider />
               </Grid>
             </Grid>
           </Grid>
@@ -156,7 +164,16 @@ function MangaItemExpanded({ entry }) {
           <Grid item container md={8}>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
-                <Typography gutterBottom variant="h6" component="h3">
+                <Typography
+                  gutterBottom
+                  variant="h4"
+                  component="h3"
+                  fontWeight="bolder"
+                  sx={{
+                    borderLeft: `4px solid #403c97`,
+                    pl: 1,
+                  }}
+                >
                   {entry.title}
                 </Typography>
                 <Typography

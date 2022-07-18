@@ -87,15 +87,19 @@ html {
   box-shadow: 0.5em 0.5em 0.5em rgba(0, 0, 0, 0.25);
 }
 
-.title-button {
-  text-decoration: none;
-  background-color: transparent;
-  border: none;
-  position: relative;
-  left: 11;
-  bottom: 20;
+/* FOOTER */
+
+.footer-container {
+  background-color: var(--accent-color);
+  font-family: var();
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.title-button:hover {
-  color: #403c97;
-  cursor: pointer;
+
+.footer-text p {
+  color: var(--highlight-color);
+  font-weight: bolder;
 }

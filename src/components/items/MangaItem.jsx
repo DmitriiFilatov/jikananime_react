@@ -17,7 +17,7 @@ import StackedLineChartIcon from "@mui/icons-material/StackedLineChart";
 import PeopleIcon from "@mui/icons-material/People";
 
 function MangaItem({ entry, handleOpen }) {
-  const { mal_id, title, score, images, popularity, type, members } = entry;
+  const { mal_id, title, score, images, popularity, members } = entry;
 
   const InfoStack = styled(Stack)(({ theme }) => ({
     alignItems: "center",
@@ -67,7 +67,7 @@ function MangaItem({ entry, handleOpen }) {
             >
               <StarOutlineIcon sx={{ fontSize: 16 }} />
               <Typography variant="subtitle2" component="p">
-                Score: {score}
+                Score: {score === null ? "Not scored" : score}
               </Typography>
             </InfoStack>
 
@@ -77,7 +77,7 @@ function MangaItem({ entry, handleOpen }) {
             >
               <StackedLineChartIcon sx={{ fontSize: 16 }} />
               <Typography variant="subtitle2" component="p">
-                Popularity: #{popularity}
+                Popularity: {popularity === 0 ? "Not placed" : `#${popularity}`}
               </Typography>
             </InfoStack>
 

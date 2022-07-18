@@ -1,6 +1,5 @@
 import React from "react";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import Typography from "@mui/material/Typography";
 
 function Navbar() {
   return (

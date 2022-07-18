@@ -7,6 +7,7 @@ import ButtonBase from "@mui/material/ButtonBase";
 import Link from "@mui/material/Link";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
+import Divider from "@mui/material/Divider";
 
 import AirplayIcon from "@mui/icons-material/Airplay";
 import TheatersIcon from "@mui/icons-material/Theaters";
@@ -52,7 +53,7 @@ function AnimeItemExpanded({ entry }) {
       >
         <Grid container spacing={2}>
           <Grid container item xs={12} md={4}>
-            <Grid container item xs="true" sm={6} md={12}>
+            <Grid item sm={6} md={12}>
               <Img alt="complex" src={entry.images.jpg.large_image_url} />
             </Grid>
 
@@ -64,6 +65,7 @@ function AnimeItemExpanded({ entry }) {
                     Type: {entry.type}
                   </Typography>
                 </Box>
+                <Divider />
               </Grid>
               <Grid item>
                 <Box sx={{ display: "flex", gap: 1 }}>
@@ -72,6 +74,7 @@ function AnimeItemExpanded({ entry }) {
                     Score: {entry.score}
                   </Typography>
                 </Box>
+                <Divider />
               </Grid>
               <Grid item>
                 <Box sx={{ display: "flex", gap: 1 }}>
@@ -80,6 +83,7 @@ function AnimeItemExpanded({ entry }) {
                     Popularity: #{entry.popularity}
                   </Typography>
                 </Box>
+                <Divider />
               </Grid>
               <Grid item>
                 <Box sx={{ display: "flex", gap: 1 }}>
@@ -88,6 +92,7 @@ function AnimeItemExpanded({ entry }) {
                     Episodes: {entry.episodes}
                   </Typography>
                 </Box>
+                <Divider />
               </Grid>
               <Grid item>
                 <Box sx={{ display: "flex", gap: 1 }}>
@@ -96,6 +101,7 @@ function AnimeItemExpanded({ entry }) {
                     Aired: {airedFrom} - {airedTo}
                   </Typography>
                 </Box>
+                <Divider />
               </Grid>
               <Grid item>
                 <Box sx={{ display: "flex", gap: 1 }}>
@@ -108,6 +114,7 @@ function AnimeItemExpanded({ entry }) {
                     Rating: {entry.rating}
                   </Typography>
                 </Box>
+                <Divider />
               </Grid>
               <Grid item>
                 <Box sx={{ display: "flex", gap: 1 }}>
@@ -123,6 +130,7 @@ function AnimeItemExpanded({ entry }) {
                     ))}
                   </Typography>
                 </Box>
+                <Divider />
               </Grid>
               <Grid item>
                 <Box sx={{ display: "flex", gap: 1 }}>
@@ -138,13 +146,23 @@ function AnimeItemExpanded({ entry }) {
                     ))}
                   </Typography>
                 </Box>
+                <Divider />
               </Grid>
             </Grid>
           </Grid>
           <Grid item container md={8}>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
-                <Typography gutterBottom variant="h6" component="h3">
+                <Typography
+                  gutterBottom
+                  variant="h4"
+                  component="h3"
+                  fontWeight="bolder"
+                  sx={{
+                    borderLeft: `4px solid #403c97`,
+                    pl: 1,
+                  }}
+                >
                   {entry.title}
                 </Typography>
                 <Typography

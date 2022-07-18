@@ -17,7 +17,7 @@ import StackedLineChartIcon from "@mui/icons-material/StackedLineChart";
 import PeopleIcon from "@mui/icons-material/People";
 
 function AnimeItem({ entry, handleOpen }) {
-  const { mal_id, title, score, images, popularity, type, members } = entry;
+  const { mal_id, title, score, images, popularity, members } = entry;
 
   const InfoStack = styled(Stack)(({ theme }) => ({
     alignItems: "center",
