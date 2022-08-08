@@ -1,6 +1,17 @@
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 
 let theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      vsm: 300,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
+
   palette: {
     type: "light",
     primary: {
@@ -12,6 +23,7 @@ let theme = createTheme({
       main: "#f50057",
     },
   },
+
   typography: {
     h6: {
       fontSize: "1rem",

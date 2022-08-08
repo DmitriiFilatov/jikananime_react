@@ -27,7 +27,7 @@ function Results({ entries, category }) {
 
   return (
     <>
-      <Grid container spacing={{ xs: 4, sm: 2, lg: 4 }} sx={{ mb: 3 }}>
+      <Grid container spacing={{ xs: 3, md: 4, lg: 4 }} sx={{ mb: 3 }}>
         {topItems &&
           topItems.map((entry) => (
             <React.Fragment key={entry.mal_id.toString()}>
