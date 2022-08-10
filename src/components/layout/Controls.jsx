@@ -30,6 +30,7 @@ function Controls() {
   const [searchCategory, setSearchCategory] = useState("anime");
   const [searchResults, setSearchResults] = useState([]);
   const [openSearch, setOpenSearch] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
     const fetchOnInit = async () => {
@@ -49,15 +50,16 @@ function Controls() {
 
     try {
       if (searchCategory !== "" && searchQuery !== "") {
-        setLoading(true);
+        setIsSearching(true);
+        setOpenSearch(true);
+
         const res = await searchItems(searchCategory, searchQuery);
         setSearchResults(res);
-        setOpenSearch(true);
       }
     } catch (err) {
       console.log("Something went wrong while fetching data.");
     }
-    setLoading(false);
+    setIsSearching(false);
   };
 
   const handleCloseSearch = () => {
@@ -112,11 +114,19 @@ function Controls() {
               variant="outlined"
               onChange={(e) => setSearchQuery(e.target.value)}
             ></TextField>
+
             <Button onClick={handleSearch} variant="contained">
               Search
             </Button>
           </Box>
         </FormGroup>
+        {isSearching === true && (
+          <>
+            <Box sx={{ mt: 10 }}>
+              <Spinner />
+            </Box>
+          </>
+        )}
         <Box sx={{ mb: 3, mt: 4 }}>
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
             <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -149,12 +159,7 @@ function Controls() {
       </Box>
 
       {openSearch === true && (
-        <Dialog
-          open={openSearch}
-          maxWidth="lg"
-          sx={{ height: "minContent" }}
-          onClose={handleCloseSearch}
-        >
+        <Dialog open={openSearch} maxWidth="lg" onClose={handleCloseSearch}>
           <DialogTitle>
             <Typography
               component="h3"
