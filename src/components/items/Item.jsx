@@ -19,7 +19,7 @@ import PeopleIcon from "@mui/icons-material/People";
 
 import TitleBoxShadow from "../../assets/img/title_box_shadow.png";
 
-function AnimeItem({ entry, handleOpen }) {
+function Item({ entry, handleOpen }) {
   const { mal_id, title, score, images, popularity, members } = entry;
 
   const InfoStack = styled(Stack)(({ theme }) => ({
@@ -29,7 +29,7 @@ function AnimeItem({ entry, handleOpen }) {
 
   return (
     <Grid item xs="auto" sm="auto" lg={2}>
-      <Card sx={{ position: "relative", maxWidth: 165 }}>
+      <Card sx={{ maxWidth: 165 }}>
         <Box sx={{ position: "relative" }}>
           <CardMedia
             component="img"
@@ -66,6 +66,7 @@ function AnimeItem({ entry, handleOpen }) {
             direction="row"
             spacing={{ xs: 1, md: 0.5, lg: 0.7 }}
             divider={<Divider orientation="vertical" flexItem />}
+            sx={{ display: "flex", justifyContent: "center" }}
           >
             <InfoStack direction={{ xs: "column" }} spacing={{ xs: 0 }}>
               <StarOutlineIcon sx={{ fontSize: 15 }} />
@@ -104,4 +105,4 @@ function AnimeItem({ entry, handleOpen }) {
   );
 }
 
-export default AnimeItem;
+export default Item;

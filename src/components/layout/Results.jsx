@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 
-import AnimeItem from "../items/AnimeItem";
-import MangaItem from "../items/MangaItem";
 import MangaItemExpanded from "../items/MangaItemExpanded";
 import AnimeItemExpanded from "../items/AnimeItemExpanded";
+import Item from "../items/Item";
 
 import Grid from "@mui/material/Grid";
 import Dialog from "@mui/material/Dialog";
@@ -31,13 +30,7 @@ function Results({ entries, category }) {
         {topItems &&
           topItems.map((entry) => (
             <React.Fragment key={entry.mal_id.toString()}>
-              {category === "anime" && (
-                <AnimeItem entry={entry} handleOpen={handleOpen} />
-              )}
-
-              {category === "manga" && (
-                <MangaItem entry={entry} handleOpen={handleOpen} />
-              )}
+              <Item entry={entry} handleOpen={handleOpen} />
             </React.Fragment>
           ))}
 
