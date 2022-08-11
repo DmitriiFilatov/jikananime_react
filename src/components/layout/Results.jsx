@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
-import MangaItemExpanded from "../items/MangaItemExpanded";
-import AnimeItemExpanded from "../items/AnimeItemExpanded";
 import Item from "../items/Item";
+import ItemExpanded from "../items/ItemExpanded";
 
 import Grid from "@mui/material/Grid";
 import Dialog from "@mui/material/Dialog";
@@ -24,9 +23,20 @@ function Results({ entries, category }) {
     setChosenItem([]);
   };
 
+  const renderExpandedItem = () => {
+    switch (category) {
+      case "anime":
+        return <ItemExpanded entry={chosenItem} category="anime" />;
+      case "manga":
+        return <ItemExpanded entry={chosenItem} category="manga" />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <>
-      <Grid container spacing={{ xs: 3, md: 4, lg: 4 }} sx={{ mb: 3 }}>
+      <Grid container spacing={{ xs: 3, md: 4, lg: 2 }} sx={{ mb: 3 }}>
         {topItems &&
           topItems.map((entry) => (
             <React.Fragment key={entry.mal_id.toString()}>
@@ -36,11 +46,7 @@ function Results({ entries, category }) {
 
         {chosenItem.length !== 0 && (
           <Dialog open={open} maxWidth="lg" onClose={handleClose}>
-            <DialogContent>
-              {category === "anime" && <AnimeItemExpanded entry={chosenItem} />}
-
-              {category === "manga" && <MangaItemExpanded entry={chosenItem} />}
-            </DialogContent>
+            <DialogContent>{renderExpandedItem()}</DialogContent>
           </Dialog>
         )}
       </Grid>

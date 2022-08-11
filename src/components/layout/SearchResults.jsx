@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
-import MangaItemExpanded from "../items/MangaItemExpanded";
-import AnimeItemExpanded from "../items/AnimeItemExpanded";
 import Item from "../items/Item";
+import ItemExpanded from "../items/ItemExpanded";
 
 import Grid from "@mui/material/Grid";
 import Dialog from "@mui/material/Dialog";
@@ -22,6 +21,17 @@ function SearchResults({ searchResults, searchCategory }) {
     setChosenItem([]);
   };
 
+  const renderExpandedItem = () => {
+    switch (searchCategory) {
+      case "anime":
+        return <ItemExpanded entry={chosenItem} category="anime" />;
+      case "manga":
+        return <ItemExpanded entry={chosenItem} category="manga" />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <>
       <Grid container spacing={{ xs: 3, md: 4, lg: 4 }} sx={{ mb: 3 }}>
@@ -38,15 +48,7 @@ function SearchResults({ searchResults, searchCategory }) {
             maxWidth="lg"
             onClose={handleCloseSearch}
           >
-            <DialogContent>
-              {searchCategory === "anime" && (
-                <AnimeItemExpanded entry={chosenItem} />
-              )}
-
-              {searchCategory === "manga" && (
-                <MangaItemExpanded entry={chosenItem} />
-              )}
-            </DialogContent>
+            <DialogContent>{renderExpandedItem()}</DialogContent>
           </Dialog>
         )}
       </Grid>

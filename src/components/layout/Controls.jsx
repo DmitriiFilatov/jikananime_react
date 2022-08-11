@@ -37,13 +37,14 @@ function Controls() {
       try {
         const response = await fetchTopItems(category);
         setTopItems(response);
+        console.log();
         setLoading(false);
       } catch (err) {
         console.error(`Something went wrong with fetching data. Error: ${err}`);
       }
     };
     fetchOnInit();
-  }, [category]);
+  }, []);
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -112,7 +113,7 @@ function Controls() {
             <TextField
               label="Find your title.."
               variant="outlined"
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onBlur={(e) => setSearchQuery(e.target.value)}
             ></TextField>
 
             <Button onClick={handleSearch} variant="contained">
