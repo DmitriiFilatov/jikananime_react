@@ -9,17 +9,13 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
-
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 
 import { fetchTopItems, searchItems } from "../api/API";
 import Results from "./Results";
 import Spinner from "./Spinner";
-import SearchResults from "./SearchResults";
+import SearchDialog from "./SearchDialog";
 
 function Controls() {
   const [topItems, setTopItems] = useState([]);
@@ -37,7 +33,6 @@ function Controls() {
       try {
         const response = await fetchTopItems(category);
         setTopItems(response);
-        console.log();
         setLoading(false);
       } catch (err) {
         console.error(`Something went wrong with fetching data. Error: ${err}`);
@@ -65,6 +60,7 @@ function Controls() {
 
   const handleCloseSearch = () => {
     setOpenSearch(false);
+    setSearchResults([]);
   };
 
   const handleResultSwitch = async (e) => {
@@ -121,13 +117,7 @@ function Controls() {
             </Button>
           </Box>
         </FormGroup>
-        {isSearching === true && (
-          <>
-            <Box sx={{ mt: 10 }}>
-              <Spinner />
-            </Box>
-          </>
-        )}
+
         <Box sx={{ mb: 3, mt: 4 }}>
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
             <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -160,25 +150,13 @@ function Controls() {
       </Box>
 
       {openSearch === true && (
-        <Dialog open={openSearch} maxWidth="lg" onClose={handleCloseSearch}>
-          <DialogTitle>
-            <Typography
-              component="h3"
-              variant="h4"
-              sx={{ fontWeight: "bolder" }}
-            >
-              Search results{" "}
-              {searchResults === null ? "..." : `(${searchResults.length})`}
-            </Typography>
-            <Divider />
-          </DialogTitle>
-          <DialogContent>
-            <SearchResults
-              searchResults={searchResults}
-              searchCategory={searchCategory}
-            />
-          </DialogContent>
-        </Dialog>
+        <SearchDialog
+          isSearching={isSearching}
+          openSearch={openSearch}
+          handleCloseSearch={handleCloseSearch}
+          searchResults={searchResults}
+          searchCategory={searchCategory}
+        />
       )}
 
       {loading ? (
