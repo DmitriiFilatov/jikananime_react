@@ -31,16 +31,7 @@ function ItemExpanded({ entry, category }) {
     boxShadow: "0.5em 0.5em 0.5em rgba(0, 0, 0, 0.25)",
   });
 
-  console.log(entry);
-
-  /* Data conversion variables */
-  const langOptions = { year: "numeric", month: "short", day: "numeric" };
-  const airedFrom = new Date(
-    category === "anime" ? entry.aired.from : entry.published.from
-  ).toLocaleDateString("en-US", langOptions);
-  const airedTo = new Date(
-    category === "anime" ? entry.aired.to : entry.published.to
-  ).toLocaleDateString("en-US", langOptions);
+  const DescrBox = styled(Box)({ display: "flex", gap: "0.5em" });
 
   return (
     <>
@@ -59,34 +50,37 @@ function ItemExpanded({ entry, category }) {
 
             <Grid container xs md spacing={1} direction="column" sx={{ mt: 1 }}>
               <Grid item>
-                <Box sx={{ display: "flex", gap: 1 }}>
+                <DescrBox>
                   <AirplayIcon sx={styleIcon} />
                   <Typography variant="subtitle2" component="p">
                     Type: {entry.type}
                   </Typography>
-                </Box>
+                </DescrBox>
                 <Divider />
               </Grid>
+
               <Grid item>
-                <Box sx={{ display: "flex", gap: 1 }}>
+                <DescrBox>
                   <StarOutlineIcon sx={styleIcon} />
                   <Typography variant="subtitle2" component="p">
                     Score: {entry.score}
                   </Typography>
-                </Box>
+                </DescrBox>
                 <Divider />
               </Grid>
+
               <Grid item>
-                <Box sx={{ display: "flex", gap: 1 }}>
+                <DescrBox>
                   <StackedLineChartIcon sx={styleIcon} />
                   <Typography variant="subtitle2" component="p">
                     Popularity: #{entry.popularity}
                   </Typography>
-                </Box>
+                </DescrBox>
                 <Divider />
               </Grid>
+
               <Grid item>
-                <Box sx={{ display: "flex", gap: 1 }}>
+                <DescrBox>
                   <TheatersIcon sx={styleIcon} />
                   <Typography variant="subtitle2" component="p">
                     {category === "anime" ? (
@@ -99,22 +93,24 @@ function ItemExpanded({ entry, category }) {
                       </>
                     )}
                   </Typography>
-                </Box>
+                </DescrBox>
                 <Divider />
               </Grid>
+
               <Grid item>
-                <Box sx={{ display: "flex", gap: 1 }}>
+                <DescrBox>
                   <AvTimerIcon sx={styleIcon} />
                   <Typography variant="subtitle2" component="p">
                     {category === "anime"
                       ? `Aired: ${entry.aired.string}`
-                      : `Published: ${entry.published.string}`}{" "}
+                      : `Published: ${entry.published.string}`}
                   </Typography>
-                </Box>
+                </DescrBox>
                 <Divider />
               </Grid>
+
               <Grid item>
-                <Box sx={{ display: "flex", gap: 1 }}>
+                <DescrBox>
                   <NotInterestedIcon sx={styleIcon} />
                   <Typography
                     variant="subtitle2"
@@ -132,11 +128,12 @@ function ItemExpanded({ entry, category }) {
                       </>
                     )}
                   </Typography>
-                </Box>
+                </DescrBox>
                 <Divider />
               </Grid>
+
               <Grid item>
-                <Box sx={{ display: "flex", gap: 1 }}>
+                <DescrBox>
                   <CategoryIcon sx={styleIcon} />
                   <Typography
                     variant="subtitle2"
@@ -159,11 +156,12 @@ function ItemExpanded({ entry, category }) {
                       </>
                     )}
                   </Typography>
-                </Box>
+                </DescrBox>
                 <Divider />
               </Grid>
+
               <Grid item>
-                <Box sx={{ display: "flex", gap: 1 }}>
+                <DescrBox>
                   <MovieFilterIcon sx={styleIcon} />
                   <Typography
                     variant="subtitle2"
@@ -186,11 +184,12 @@ function ItemExpanded({ entry, category }) {
                       </>
                     )}
                   </Typography>
-                </Box>
+                </DescrBox>
                 <Divider />
               </Grid>
             </Grid>
           </Grid>
+
           <Grid item container md={8}>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>

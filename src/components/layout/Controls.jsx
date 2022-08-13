@@ -167,7 +167,8 @@ function Controls() {
               variant="h4"
               sx={{ fontWeight: "bolder" }}
             >
-              Search results {`(${searchResults.length})`}
+              Search results{" "}
+              {searchResults === null ? "..." : `(${searchResults.length})`}
             </Typography>
             <Divider />
           </DialogTitle>

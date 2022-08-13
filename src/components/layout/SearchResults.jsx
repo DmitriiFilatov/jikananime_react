@@ -34,7 +34,7 @@ function SearchResults({ searchResults, searchCategory }) {
 
   return (
     <>
-      <Grid container spacing={{ xs: 3, md: 4, lg: 4 }} sx={{ mb: 3 }}>
+      <Grid container spacing={{ xs: 3, md: 4, lg: 1 }} sx={{ mb: 3 }}>
         {searchResults &&
           searchResults.map((entry) => (
             <React.Fragment key={entry.mal_id.toString()}>
