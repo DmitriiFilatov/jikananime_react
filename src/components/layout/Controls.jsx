@@ -33,29 +33,30 @@ function Controls() {
       try {
         const response = await fetchTopItems(category);
         setTopItems(response);
-        setLoading(false);
       } catch (err) {
         console.error(`Something went wrong with fetching data. Error: ${err}`);
+      } finally {
+        setLoading(false);
       }
     };
     fetchOnInit();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSearch = async (e) => {
     e.preventDefault();
-
     try {
       if (searchCategory !== "" && searchQuery !== "") {
         setIsSearching(true);
         setOpenSearch(true);
-
         const res = await searchItems(searchCategory, searchQuery);
         setSearchResults(res);
       }
     } catch (err) {
       console.log("Something went wrong while fetching data.");
+    } finally {
+      setIsSearching(false);
     }
-    setIsSearching(false);
   };
 
   const handleCloseSearch = () => {
@@ -149,16 +150,6 @@ function Controls() {
         </Box>
       </Box>
 
-      {openSearch === true && (
-        <SearchDialog
-          isSearching={isSearching}
-          openSearch={openSearch}
-          handleCloseSearch={handleCloseSearch}
-          searchResults={searchResults}
-          searchCategory={searchCategory}
-        />
-      )}
-
       {loading ? (
         <Spinner />
       ) : (
@@ -167,6 +158,16 @@ function Controls() {
             <Results entries={topItems} category={category} />
           </>
         )
+      )}
+
+      {openSearch === true && (
+        <SearchDialog
+          isSearching={isSearching}
+          openSearch={openSearch}
+          handleCloseSearch={handleCloseSearch}
+          searchResults={searchResults}
+          searchCategory={searchCategory}
+        />
       )}
     </Box>
   );
