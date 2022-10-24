@@ -89,6 +89,7 @@ html {
 /* FOOTER */
 
 .footer-container {
+  padding: 0 0.5em;
   background-color: var(--accent-color);
   font-family: var();
   width: 100%;
@@ -96,6 +97,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .footer-text p {

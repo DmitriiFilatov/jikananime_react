@@ -92,7 +92,14 @@ function Controls() {
     <Box>
       <Box sx={{ mt: 7, mb: 3 }}>
         <FormGroup row sx={boxStyle}>
-          <Box sx={{ display: "flex", gap: 1 }}>
+          <Box
+            sx={{
+              display: "flex",
+              gap: 1,
+              justifyContent: "center",
+              flexWrap: "wrap",
+            }}
+          >
             <FormControl>
               <InputLabel id="categorySelectLabel">Category</InputLabel>
               <Select

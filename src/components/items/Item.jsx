@@ -29,7 +29,7 @@ function Item({ entry, handleOpen }) {
 
   return (
     <Grid item xs="auto" sm="auto" lg={2}>
-      <Card sx={{ maxWidth: 165 }}>
+      <Card sx={{ maxWidth: 160 }}>
         <Box sx={{ position: "relative" }}>
           <CardMedia
             component="img"
